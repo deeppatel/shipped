@@ -1,0 +1,96 @@
+SELECT * 
+FROM  `user_master` ,  `user_results` 
+WHERE  `user_master`.`id` =  `user_results`.`user_master_id` 
+LIMIT 1 , 100
+
+
+SELECT `user_master`.`email`, `user_master`.`cell_number`, `user_master`.`first_name`,`user_master`.`last_name`,`user_master`.`verified`,`college_master`.`college_name`,`test_master`.`test_name`,`user_results`.`results`
+FROM  `user_master` , `user_results`,`user_details`,`test_master`,`college_master`
+WHERE  `user_master`.`id` =  `user_results`.`user_master_id` 
+AND `user_master`.`id` =  `user_details`.`user_master_id` 
+AND `test_master`.`id` = `user_results`.`test_type_id`
+AND `college_master`.`id` = `user_details`.`college_id`
+LIMIT 0 , 100
+
+
+SELECT `user_master`.`email`, `user_master`.`cell_number`, `user_master`.`first_name`,`user_master`.`last_name`,`user_master`.`verified`,`college_master`.`college_name`,`test_master`.`test_name`,`user_results`.`results`
+FROM  `user_master` , `user_results`,`user_details`,`test_master`,`college_master`
+WHERE  `user_master`.`id` =  `user_results`.`user_master_id` 
+AND `user_master`.`id` =  `user_details`.`user_master_id` 
+AND `test_master`.`id` = `user_results`.`test_type_id`
+AND `college_master`.`id` = `user_details`.`college_id`
+LIMIT 0 , 100
+
+
+SELECT `user_master`.`email`, `user_master`.`cell_number`, `user_master`.`first_name`,`user_master`.`last_name`,`user_master`.`verified`,`college_master`.`name`,`test_master`.`test_name`,`user_results`.`results`
+FROM  `user_master` , `user_results`,`user_details`,`test_master`,`college_master`
+WHERE  `user_master`.`id` =  `user_results`.`user_master_id` 
+AND `user_master`.`id` =  `user_details`.`user_master_id` 
+AND `college_master`.`id` = `user_details`.`college_id`
+LIMIT 0 , 100
+
+
+SELECT * 
+FROM  `user_master` ,  `user_results` 
+WHERE  `user_master`.`id` =  `user_results`.`user_master_id` 
+LIMIT 1 , 100
+
+
+SELECT `user_master`.`email`, `user_master`.`cell_number`, `user_master`.`first_name`,`user_master`.`last_name`,`user_master`.`verified`,`college_master`.`college_name`,`test_master`.`test_name`,`user_results`.`results`
+FROM  `user_master` , `user_results`,`user_details`,`test_master`,`college_master`
+WHERE  `user_master`.`id` =  `user_results`.`user_master_id` 
+AND `user_master`.`id` =  `user_details`.`user_master_id` 
+AND `test_master`.`id` = `user_results`.`test_type_id`
+AND `college_master`.`id` = `user_details`.`college_id`
+LIMIT 0 , 100
+
+
+SELECT `user_master`.`email`, `user_master`.`cell_number`, `user_master`.`first_name`,`user_master`.`last_name`,`user_master`.`verified`,`college_master`.`college_name`,`test_master`.`test_name`,`user_results`.`results`
+FROM  `user_master` , `user_results`,`user_details`,`test_master`,`college_master`
+WHERE  `user_master`.`id` =  `user_results`.`user_master_id` 
+AND `user_master`.`id` =  `user_details`.`user_master_id` 
+AND `test_master`.`id` = `user_results`.`test_type_id`
+AND `college_master`.`id` = `user_details`.`college_id`
+LIMIT 0 , 100
+
+
+SELECT `user_master`.`email`, `user_master`.`cell_number`, `user_master`.`first_name`,`user_master`.`last_name`,`user_master`.`verified`,`college_master`.`name`,`test_master`.`test_name`,`user_results`.`results`
+FROM  `user_master` , `user_results`,`user_details`,`test_master`,`college_master`
+WHERE  `user_master`.`id` =  `user_results`.`user_master_id` 
+AND `user_master`.`id` =  `user_details`.`user_master_id` 
+AND `college_master`.`id` = `user_details`.`college_id`
+LIMIT 0 , 100
+
+
+
+
+
+SELECT `attitude_interests_clusters`.`id`,`attitude_interests_clusters`.`cluster_name`,COUNT(`attitude_interests_clusters`.`cluster_name`)
+				FROM `attitude_interests_areas`,`attitude_interests_activities`,`test_interestv1_result`, `attitude_interests_clusters`,`user_master`
+				WHERE `attitude_interests_areas`.`id` = `attitude_interests_activities`.`area_id`
+				AND `test_interestv1_result`.`user_master_id` = `user_master`.`id`
+				AND `attitude_interests_activities`.`id`=`test_interestv1_result`.`attitude_interests_activities_id`
+				AND `attitude_interests_clusters`.`id`=`attitude_interests_areas`.`career_cluster_id`
+				GROUP BY(`test_interestv1_result`.`user_master_id`,`attitude_interests_clusters`.`cluster_name`)
+				ORDER BY COUNT(`attitude_interests_clusters`.`cluster_name`) DESC
+				
+
+SELECT `attitude_interests_clusters`.`id`,`attitude_interests_clusters`.`cluster_name`,COUNT(`attitude_interests_clusters`.`cluster_name`)
+				FROM `attitude_interests_areas`,`attitude_interests_activities`,`test_interestv1_result`, `attitude_interests_clusters`,`user_master`
+				WHERE `attitude_interests_areas`.`id` = `attitude_interests_activities`.`area_id`
+				AND `test_interestv1_result`.`user_master_id` = 1
+				AND `attitude_interests_activities`.`id`=`test_interestv1_result`.`attitude_interests_activities_id`
+				AND `attitude_interests_clusters`.`id`=`attitude_interests_areas`.`career_cluster_id`
+				GROUP BY(`attitude_interests_clusters`.`cluster_name`)
+				ORDER BY COUNT(`attitude_interests_clusters`.`cluster_name`) DESC
+				
+
+
+SELECT `attitude_interests_clusters`.`id`,`attitude_interests_clusters`.`cluster_name`,`attitude_interests_clusters`.`cluster_name`
+				FROM `attitude_interests_areas`,`attitude_interests_activities`,`test_interestv1_result`, `attitude_interests_clusters`,`user_master`
+				WHERE `attitude_interests_areas`.`id` = `attitude_interests_activities`.`area_id`
+				AND `test_interestv1_result`.`user_master_id` = 1
+				AND `attitude_interests_activities`.`id`=`test_interestv1_result`.`attitude_interests_activities_id`
+				AND `attitude_interests_clusters`.`id`=`attitude_interests_areas`.`career_cluster_id`
+				
+
